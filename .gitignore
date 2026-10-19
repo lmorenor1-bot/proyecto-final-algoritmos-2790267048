@@ -1,0 +1,17 @@
+# Archivos ejecutables
+*.exe
+*.out
+
+# Archivos de compilacion
+*.o
+*.obj
+a.out
+
+# Carpetas de compilacion
+build/
+bin/
+Debug/
+Release/
+
+# Archivos temporales
+*.tmp
