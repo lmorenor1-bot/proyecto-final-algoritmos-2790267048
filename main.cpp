@@ -8,6 +8,14 @@ int main() {
     int cantidad = 0;
     double subtotal = 0;
 
+    double porcentajeDescuento = 0;
+    double descuento = 0;
+    double montoConDescuento = 0;
+    double iva = 0;
+    double totalPagar = 0;
+    double pagoRecibido = 0;
+    double cambio = 0;
+
     do {
         cout<< "SISTEMA DE CAJA"<< endl;
         
@@ -116,6 +124,27 @@ else if (cin.peek() != '\n') {
 else {
     cout << "\nVenta registrada correctamente." << endl;
     cout << "Subtotal final: Q" << subtotal << endl;
+
+    if (subtotal < 100) {
+        porcentajeDescuento = 0;
+    }
+    else if (subtotal < 500) {
+        porcentajeDescuento = 0.05;
+    }
+    else {
+        porcentajeDescuento = 0.10;
+    }
+
+    descuento = subtotal * porcentajeDescuento;
+    montoConDescuento = subtotal - descuento;
+    
+    iva = montoConDescuento * 0.12;
+    totalPagar = montoConDescuento + iva;
+
+    cout << "Descuento aplicado: Q" << descuento << endl;
+    cout << "Monto con descuento: Q" << montoConDescuento << endl;
+    cout << "IVA (12%): Q" << iva << endl;
+    cout << "Total a pagar: Q" << totalPagar << endl;
 }
 
 }
