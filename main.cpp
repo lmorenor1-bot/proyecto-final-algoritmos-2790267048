@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <iomanip>
 using namespace std;
 
 int main() {
@@ -15,6 +16,14 @@ int main() {
     double totalPagar = 0;
     double pagoRecibido = 0;
     double cambio = 0;
+
+    int numeroVentas = 0;
+
+    double totalVendido = 0;
+    double ventaMayor = 0;
+    double ventaMenor = 0;
+    double promedioVentas = 0;
+    double totalDescuentos = 0;
 
     do {
         cout<< "SISTEMA DE CAJA"<< endl;
@@ -145,16 +154,108 @@ else {
     cout << "Monto con descuento: Q" << montoConDescuento << endl;
     cout << "IVA (12%): Q" << iva << endl;
     cout << "Total a pagar: Q" << totalPagar << endl;
+
+    do {
+    cout << "\nIngrese el pago recibido: Q";
+    cin >> pagoRecibido;
+
+    if (cin.fail()) {
+        cout << "Error: debe ingresar un numero valido." << endl;
+
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        pagoRecibido = -1;
+    }
+    else if (cin.peek() != '\n') {
+        cout << "Error: el pago contiene caracteres no validos." << endl;
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        pagoRecibido = -1;
+    }
+    else if (pagoRecibido < totalPagar) {
+        cout << "Error: el pago es insuficiente." << endl;
+    }
+
+} while (pagoRecibido < totalPagar);
+
+cambio = pagoRecibido - totalPagar;
+
+cout << fixed << setprecision(2);
+
+cout << "           RECIBO DE VENTA          " << endl;
+
+cout << "Subtotal:           Q" << subtotal << endl;
+cout << "Descuento:          Q" << descuento << endl;
+cout << "Monto descontado:   Q" << montoConDescuento << endl;
+cout << "IVA (12%):          Q" << iva << endl;
+cout << "------------------------------------" << endl;
+cout << "TOTAL A PAGAR:      Q" << totalPagar << endl;
+cout << "Pago recibido:      Q" << pagoRecibido << endl;
+cout << "Cambio:             Q" << cambio << endl;
+
+cout << "       Gracias por su compra        " << endl;
+
+numeroVentas++;
+
+totalVendido = totalVendido + totalPagar;
+totalDescuentos = totalDescuentos + descuento;
+
+if (numeroVentas == 1) {
+    ventaMayor = totalPagar;
+    ventaMenor = totalPagar;
+}
+else {
+    if (totalPagar > ventaMayor) {
+        ventaMayor = totalPagar;
+    }
+
+    if (totalPagar < ventaMenor) {
+        ventaMenor = totalPagar;
+    }
+}
 }
 
 }
         
-        else if (opcion == 2){
-            cout << "\nResumen parcial del dia" << endl;
-        }
-        else if (opcion == 3){
-            cout << "\nCerrando caja..." << endl;
-        }
+        else if (opcion == 2) {
+
+    cout << "        RESUMEN DEL DIA             " << endl;
+
+    if (numeroVentas == 0) {
+
+        cout << "Todavia no se han realizado ventas." << endl;
+
+    }
+    else {
+
+        promedioVentas = totalVendido / numeroVentas;
+
+        cout << fixed << setprecision(2);
+
+        cout << "Numero de ventas: " << numeroVentas << endl;
+        cout << "Total vendido: Q" << totalVendido << endl;
+        cout << "Venta mayor: Q" << ventaMayor << endl;
+        cout << "Venta menor: Q" << ventaMenor << endl;
+        cout << "Promedio por venta: Q" << promedioVentas << endl;
+        cout << "Total de descuentos: Q" << totalDescuentos << endl;
+
+    }
+
+    cout << "---------------------------------------" << endl;
+}
+       else if (opcion == 3) {
+    
+    cout << "          CIERRE DE CAJA           " << endl;
+
+    cout << "Numero de ventas realizadas: " << numeroVentas << endl;
+    cout << fixed << setprecision(2);
+    cout << "Total vendido: Q" << totalVendido << endl;
+
+    cout << "\nCaja cerrada correctamente." << endl;
+    cout << "Gracias por utilizar el sistema." << endl;
+}
         else {
             cout << "\nError: opcion no valida." << endl;
         }
