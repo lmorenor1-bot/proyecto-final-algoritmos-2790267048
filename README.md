@@ -63,3 +63,13 @@ utilizadas y las correcciones realizadas durante el
 desarrollo del proyecto, revisar el siguiente documento:
 
 [Ver bitácora de uso de IA](docs/bitacora-ia.md)
+
+## Video de demostración
+
+En el siguiente video se muestra el funcionamiento del
+Sistema de Caja para una Tienda desarrollado en C++.
+
+Se presentan casos de prueba y se explica el uso de ciclos,
+condicionales y validaciones.
+
+[Ver video de demostración](https://youtu.be/4FLzZYyxK5w)
