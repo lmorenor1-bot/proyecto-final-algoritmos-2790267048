@@ -15,3 +15,5 @@ Release/
 
 # Archivos temporales
 *.tmp
+# Configuracion de Visual Studio Code
+.vscode/
